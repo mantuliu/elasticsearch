@@ -217,6 +217,8 @@ public abstract class ESSingleNodeTestCase extends ESTestCase {
             .put(HierarchyCircuitBreakerService.USE_REAL_MEMORY_USAGE_SETTING.getKey(), false)
             .putList(DISCOVERY_SEED_HOSTS_SETTING.getKey()) // empty list disables a port scan for other nodes
             .putList(INITIAL_MASTER_NODES_SETTING.getKey(), nodeName)
+            // when performing integration tests, change the value to false, see https://github.com/elastic/elasticsearch/issues/61074.
+            .put("action.destructive_requires_name",false)
             .put(nodeSettings()) // allow test cases to provide their own settings or override these
             .build();
 
